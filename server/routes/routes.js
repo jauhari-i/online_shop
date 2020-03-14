@@ -6,6 +6,6 @@ const authController = require("../controller/authController");
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.get("/register", authController.register);
+app.post("/register", authController.register);
 
 module.exports = app;
