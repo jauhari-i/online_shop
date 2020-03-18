@@ -32,6 +32,12 @@ async function register(req, data, location, cb) {
                     if (err) {
                       cb("server-error");
                     } else if (inserted) {
+                      // conn.query(
+                      //   "INSERT INTO profile (id_user, first_name, last_name, imgPath, nomer_hp, status) VALUES (?,?,?,?,?,?)"
+                      //   , [
+                      //   data.
+                      // ]);
+                      console.log(inserted);
                       cb(null, inserted);
                     } else {
                       cb("fail");
