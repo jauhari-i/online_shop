@@ -28,7 +28,8 @@ async function login(req, data, location, cb) {
                       const token = jwt.sign(
                         {
                           id: user[0].id_user,
-                          email: user[0].email
+                          email: user[0].email,
+                          level: user[0].level
                         },
                         "HelloWorld",
                         {
