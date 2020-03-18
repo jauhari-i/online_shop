@@ -22,6 +22,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/", require("./routes/routes"));
+app.use("/api", require("./routes/routes"));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

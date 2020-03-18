@@ -7,7 +7,8 @@ const login = require("../service/auth/login");
 const logout = require("../service/auth/logout");
 
 controller.register = async (req, res) => {
-  const location = await getLocation();
+  // const location = await getLocation();
+  let location = { city: "Blitar" };
   const data = req.body;
   let validation = [];
   if (!data.email) {
@@ -25,11 +26,6 @@ controller.register = async (req, res) => {
       error: "Password confirmation is required"
     });
   }
-  if (data.password !== data.password2) {
-    validation.push({
-      error: "Password is not same"
-    });
-  }
   if (!data.first_name) {
     validation.push({
       error: "First name is required"
@@ -40,6 +36,11 @@ controller.register = async (req, res) => {
       error: "Last name is required"
     });
   }
+  if (data.password !== data.password2) {
+    validation.push({
+      error: "Password is not same"
+    });
+  }
   if (validation.length > 0) {
     res.json(validation);
   } else {
@@ -47,15 +48,19 @@ controller.register = async (req, res) => {
       if (err) {
         res.json({
           status: 500,
-          error: err
+          error: err,
+          data: {
+            registered: false
+          },
+          msg: err
         });
       } else if (result) {
         res.json({
           status: 200,
+          error: null,
           data: {
             registered: true
           },
-          error: null,
           msg: "Registered successfully"
         });
       }
@@ -64,7 +69,8 @@ controller.register = async (req, res) => {
 };
 
 controller.login = async (req, res) => {
-  const location = await getLocation();
+  // const location = await getLocation();
+  let location = { city: "Blitar" };
   const data = req.body;
   let validation = [];
   if (!data.email) {
@@ -101,7 +107,8 @@ controller.login = async (req, res) => {
 };
 
 controller.logOut = async (req, res) => {
-  const location = await getLocation();
+  // const location = await getLocation();
+  let location = { city: "Blitar" };
   const id = req.decoded.id;
   logout(req, id, location, (err, out) => {
     if (err) {

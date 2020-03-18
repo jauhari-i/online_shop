@@ -14,7 +14,7 @@ app.use(
       port: 3306,
       database: "online_shop"
     },
-    "single"
+    "pool"
   )
 );
 

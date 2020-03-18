@@ -32,13 +32,17 @@ async function register(req, data, location, cb) {
                     if (err) {
                       cb("server-error");
                     } else if (inserted) {
-                      // conn.query(
-                      //   "INSERT INTO profile (id_user, first_name, last_name, imgPath, nomer_hp, status) VALUES (?,?,?,?,?,?)"
-                      //   , [
-                      //   data.
-                      // ]);
-                      console.log(inserted);
-                      cb(null, inserted);
+                      conn.query(
+                        "INSERT INTO profile (id_user, first_name, last_name, imgPath, nomer_hp, status) VALUES (?,?,?,'default.png','0','0')",
+                        [inserted.insertId, data.first_name, data.last_name],
+                        (err, insert) => {
+                          if (err) {
+                            cb("Server Error");
+                          } else {
+                            cb(null, insert);
+                          }
+                        }
+                      );
                     } else {
                       cb("fail");
                     }
