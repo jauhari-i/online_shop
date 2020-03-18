@@ -8,8 +8,7 @@ const port = 5500;
 
 const db = require("./db/db");
 
-if (db) {
-  app.use(db);
+if (app.use(db)) {
   console.log("Database Connected");
 } else {
   console.log("Database Disconnected");
